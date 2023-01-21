@@ -14,7 +14,7 @@ include 'conn.php';
                 <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="">
+            <form action="add-student.php" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>First Name</label>
@@ -33,11 +33,11 @@ include 'conn.php';
                         <input type="text" name="address" class="form-control" placeholder="Enter a Address">
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="add-student" class="btn btn-primary">Submit</button>
+                </div>
             </form>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" name="save" class="btn btn-primary">Submit</button>
-            </div>
         </div>
     </div>
 </div>
@@ -52,6 +52,7 @@ include 'conn.php';
     <table class="table table-hover">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Age</th>
