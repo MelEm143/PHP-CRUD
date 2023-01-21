@@ -1,7 +1,7 @@
 <?php
 
 $conn = mysqli_connect("localhost","root","");
-$database = mysqli_select_db($conn, 'student_db');
+$sql = mysqli_select_db($conn, 'student_db');
 
 if(isset($_POST['add-student']))
 {

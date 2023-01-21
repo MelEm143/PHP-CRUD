@@ -6,7 +6,7 @@ include 'conn.php';
 
 <!-- Button trigger modal -->
 
-<!-- Modal -->
+<!-- Modal Add Functionality -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -42,14 +42,73 @@ include 'conn.php';
     </div>
 </div>
 
+<!-- Modal Edit Functionality -->
+<div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Student</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="update-student.php" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Enter a First Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Enter a Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" name="age" id="age" class="form-control" placeholder="Enter a Age">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" name="address" id="address" class="form-control" placeholder="Enter a Address">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="update-data" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete Functionality -->
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="delete-student.php" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" name="delete-id" id="delete-id">
+                    <h6>Do you want to delete this data?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" name="delete-data" class="btn btn-primary">Yes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="container mt-3 p-5">
-    <?php include('message.php'); ?>
+
     <h2>PHP CRUD</h2>
     <p>Student Management System</p>
+    <?php include('message.php'); ?>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Add New Student
     </button>
-    <table class="table table-hover">
+    <table id="datatableid" class="table table-hover">
         <thead>
             <tr>
                 <th>ID</th>
@@ -74,11 +133,9 @@ include 'conn.php';
                         <td><?= $students['age']; ?></td>
                         <td><?= $students['address']; ?></td>
                         <td>
-                            <a href="student-view.php?id=<?= $students['id']; ?>" class="btn btn-info btn-sm">View</a>
-                            <a href="student-edit.php?id=<?= $students['id']; ?>" class="btn btn-success btn-sm">Edit</a>
-                            <form action="code.php" method="POST" class="d-inline">
-                                <button type="submit" name="delete_student" value="<?= $student['id']; ?>" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
+                            <!-- <a href="" class="btn btn-success btn-sm btn-edit">Edit</a> -->
+                            <button type="button" class="btn btn-success btn-edit">Edit</button>
+                            <button type="button" class="btn btn-danger btn-delete">Delete</button>
                         </td>
                     </tr>
             <?php
@@ -89,11 +146,5 @@ include 'conn.php';
 
             ?>
         </tbody>
-        <!-- <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john@example.com</td>
-                <td>Delete</td>
-            </tr> -->
     </table>
 </div>
